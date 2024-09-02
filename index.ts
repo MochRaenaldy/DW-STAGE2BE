@@ -26,9 +26,9 @@ app.use(route);
 
 app.listen(port, async () => {
   try {
-    await db.$connect()
+    await db.$connect();
     console.log("Aplikasi Berjalan di port " + port);
   } catch (error) {
-    await db.$disconnect()
+    await db.$disconnect();
   }
 });

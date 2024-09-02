@@ -1,7 +1,8 @@
 import { Router } from "express";
 import * as userController from "../controllers/UserController";
 import authorization from "../middlewares/authorization";
-import upload from "../middlewares/fileUpload";
+import { uploadCloudinary } from "../middlewares/claudinary";
+import { upload } from "../middlewares/fileUpload";
 const userRoute = Router();
 
 userRoute.get("/", userController.findAll);
@@ -10,7 +11,12 @@ userRoute.get("/:id", userController.findById);
 
 userRoute.get("/search/:username", userController.findByUsername);
 
-userRoute.patch("/update/:id", upload.single("profile_pic"), userController.update);
+userRoute.patch(
+  "/update/:id",
+  upload.single("file"),
+  uploadCloudinary,
+  userController.update
+);
 
 userRoute.get("/userlogin/:userId", userController.findbyuserlogin);
 

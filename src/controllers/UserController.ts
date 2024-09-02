@@ -25,8 +25,8 @@ export async function findByUsername(req: Request, res: Response) {
 }
 
 export const update = async (req: Request, res: Response) => {
-  if (req.file) {
-    req.body.profile_pic = req.file.filename;
+  if (res.locals.image) {
+    req.body.profile_pic = res.locals.image;
   }
   const user = await userservice.update(parseInt(req.params.id), req.body);
   console.log(user);

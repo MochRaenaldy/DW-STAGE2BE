@@ -1,7 +1,8 @@
 import { Router } from "express";
 import * as postController from "../controllers/PostController";
-import upload from "../middlewares/fileUpload";
 import authorization from "../middlewares/authorization";
+import { upload } from "../middlewares/fileUpload";
+import { uploadCloudinary } from "../middlewares/claudinary";
 const postRoute = Router();
 
 postRoute.get("/", authorization, postController.findAll);
@@ -13,7 +14,8 @@ postRoute.get("/byUser/:id", authorization, postController.findByUserId);
 postRoute.post(
   "/",
   authorization,
-  upload.array("images"),
+  upload.array("files"),
+  uploadCloudinary,
   postController.create
 );
 

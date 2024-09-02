@@ -24,8 +24,8 @@ export const create = async (req: Request, res: Response) => {
     await createPostSchema.validateAsync(req.body);
 
      console.log(req.files);
-     if (req.files) {
-       req.body.images = req.files;
+     if (res.locals.images) {
+       req.body.images = res.locals.images;
      }
 
     const userId = res.locals.user.id;

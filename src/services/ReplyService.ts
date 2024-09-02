@@ -47,7 +47,7 @@ const newPost = await db.posts.create({
       images: {
         create:
           post.images &&
-          post.images.map((image) => ({ image: image.filename })),
+          post.images.map((image) => ({ image: image})),
       },
     },
   });

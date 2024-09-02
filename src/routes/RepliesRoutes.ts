@@ -1,7 +1,8 @@
 import { Router } from "express";
 import * as replyController from "../controllers/ReplyController";
 import authorization from "../middlewares/authorization";
-import upload from "../middlewares/fileUpload";
+import { upload } from "../middlewares/fileUpload";
+import { uploadCloudinary } from "../middlewares/claudinary";
 const repliesRoute = Router();
 
 repliesRoute.get("/byPost/:postId", replyController.findAllInPost);
@@ -11,7 +12,8 @@ repliesRoute.get("/:id", replyController.findById);
 repliesRoute.post(
   "/create/:postId",
   authorization,
-  upload.array("images"),
+  upload.array("files"),
+  uploadCloudinary,
   replyController.addReply
 );
 
