@@ -19,8 +19,7 @@ app.use(cors());
 // routes
 
 app.get("/", (req: express.Request, res: express.Response) => {
-  const users = db.user.findMany()
-  // res.send("Hello World");
+  res.send("Hello World");
 });
 
 app.use(route);
