@@ -62,5 +62,4 @@ if (existingLike) {
 } else {
   return false;
 }
-
 }
